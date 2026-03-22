@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9737B87E2F709262005366CD /* AGENTS.md in Resources */ = {isa = PBXBuildFile; fileRef = 9737B87D2F709262005366CD /* AGENTS.md */; };
+		9737B87F2F709262005366CD /* AGENTS.md in Resources */ = {isa = PBXBuildFile; fileRef = 9737B87D2F709262005366CD /* AGENTS.md */; };
+		9737B8802F709262005366CD /* AGENTS.md in Resources */ = {isa = PBXBuildFile; fileRef = 9737B87D2F709262005366CD /* AGENTS.md */; };
+		9737B8822F709373005366CD /* app_structure.md in Resources */ = {isa = PBXBuildFile; fileRef = 9737B8812F709373005366CD /* app_structure.md */; };
+		9737B8832F709373005366CD /* app_structure.md in Resources */ = {isa = PBXBuildFile; fileRef = 9737B8812F709373005366CD /* app_structure.md */; };
+		9737B8842F709373005366CD /* app_structure.md in Resources */ = {isa = PBXBuildFile; fileRef = 9737B8812F709373005366CD /* app_structure.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		9737B85C2F708FD1005366CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +36,8 @@
 		9737B8422F708FD0005366CD /* SavorVaultAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavorVaultAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9737B85B2F708FD1005366CD /* SavorVaultAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavorVaultAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9737B8652F708FD1005366CD /* SavorVaultAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavorVaultAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9737B87D2F709262005366CD /* AGENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AGENTS.md; sourceTree = "<group>"; };
+		9737B8812F709373005366CD /* app_structure.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = app_structure.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -88,6 +99,8 @@
 		9737B8392F708FD0005366CD = {
 			isa = PBXGroup;
 			children = (
+				9737B8812F709373005366CD /* app_structure.md */,
+				9737B87D2F709262005366CD /* AGENTS.md */,
 				9737B8442F708FD0005366CD /* SavorVaultAI */,
 				9737B85E2F708FD1005366CD /* SavorVaultAITests */,
 				9737B8682F708FD1005366CD /* SavorVaultAIUITests */,
@@ -225,6 +238,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9737B8822F709373005366CD /* app_structure.md in Resources */,
+				9737B8802F709262005366CD /* AGENTS.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +247,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9737B8842F709373005366CD /* app_structure.md in Resources */,
+				9737B87F2F709262005366CD /* AGENTS.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +256,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9737B8832F709373005366CD /* app_structure.md in Resources */,
+				9737B87E2F709262005366CD /* AGENTS.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,8 +314,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,8 +346,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -457,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
