@@ -20,6 +20,8 @@ class AddDrinkViewController: UIViewController {
     @IBOutlet weak var tastingNotesPlaceholderLabel: UILabel!
     @IBOutlet weak var tastingNotesCharacterCountLabel: UILabel!
     @IBOutlet weak var tastingNotesInputContainerView: UIView!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var photoCollectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
 
     var selectedDrinkType: String?
@@ -29,9 +31,11 @@ class AddDrinkViewController: UIViewController {
     let sweetnessOptions = ["Dry", "Off-Dry", "Unselected", "Semi-Sweet", "Sweet"]
     let bitternessOptions = ["Smooth", "Rounded", "Unselected", "Bold", "Sharp"]
     let tastingNotesMaximumCharacterCount = 200
+    let maximumPhotoCount = 5
     var lastSweetnessPreviewIndex = 2
     var lastBitternessPreviewIndex = 2
     var personalRating = 0
+    var capturedPhotos: [UIImage] = []
     lazy var availableYears: [Int] = {
         let currentYear = Calendar.current.component(.year, from: Date())
         return Array(stride(from: currentYear, through: 1900, by: -1))
@@ -47,7 +51,13 @@ class AddDrinkViewController: UIViewController {
         configureYearPicker()
         configurePersonalRatingSection()
         configureTastingNotesSection()
+        configurePhotoSection()
         configureKeyboardHandling()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updatePhotoCollectionLayoutIfNeeded()
     }
 
     deinit {

@@ -311,6 +311,7 @@
 				DEVELOPMENT_TEAM = RFRYGULZBC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SavorVaultAI/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "SavorVaultAI uses the camera so you can capture photos of your drinks.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -329,7 +330,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -343,6 +344,7 @@
 				DEVELOPMENT_TEAM = RFRYGULZBC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SavorVaultAI/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "SavorVaultAI uses the camera so you can capture photos of your drinks.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -361,7 +363,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

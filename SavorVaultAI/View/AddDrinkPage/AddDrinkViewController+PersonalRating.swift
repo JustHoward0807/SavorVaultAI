@@ -74,7 +74,7 @@ extension AddDrinkViewController {
             button.alpha = personalRating >= button.tag ? 1 : 0.45
         }
 
-        personalRatingValueLabel.text = "\(Double(personalRating).formatted(.number.precision(.fractionLength(1)))) / 5.0"
+        personalRatingValueLabel.text = "\(personalRating) / 5"
     }
 
     /// Updates the selected personal rating value.
