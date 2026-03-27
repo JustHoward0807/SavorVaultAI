@@ -31,7 +31,7 @@
         <!--Home-->
         <scene sceneID="GLN-R9-mus">
             <objects>
-                <viewController title="Home" id="Fuf-eq-efw" sceneMemberID="viewController">
+                <viewController title="Home" id="Fuf-eq-efw" customClass="HomeViewController" customModule="SavorVaultAI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o32-1g-gWw">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
