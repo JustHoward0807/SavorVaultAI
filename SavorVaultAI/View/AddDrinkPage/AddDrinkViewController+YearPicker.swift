@@ -11,9 +11,18 @@ extension AddDrinkViewController {
     func configureYearPicker() {
         yearPickerView.dataSource = self
         yearPickerView.delegate = self
-        yearTextField.inputView = yearPickerView
-        yearTextField.inputAccessoryView = makeYearAccessoryToolbar()
+        yearTextField.inputView = makeYearPickerInputView()
         yearTextField.clearButtonMode = .never
+
+        yearTextField.borderStyle = .none
+        yearTextField.backgroundColor = .tertiarySystemFill
+        yearTextField.layer.cornerRadius = 10
+        yearTextField.clipsToBounds = true
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
+        yearTextField.leftView = paddingView
+        yearTextField.leftViewMode = .always
+        yearTextField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
+        yearTextField.rightViewMode = .always
 
         if let firstYear = availableYears.first {
             yearTextField.text = String(firstYear)
@@ -21,20 +30,45 @@ extension AddDrinkViewController {
         }
     }
 
-    /// Builds the accessory toolbar for the year picker.
-    func makeYearAccessoryToolbar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        toolbar.items = [
-            UIBarButtonItem.flexibleSpace(),
-            UIBarButtonItem(
-                title: "Done",
-                style: .prominent,
-                target: self,
-                action: #selector(didTapDoneOnYearPicker)
-            )
-        ]
-        return toolbar
+    /// Creates a combined input view containing the year picker and a Done button.
+    func makeYearPickerInputView() -> UIView {
+        let screenWidth = view.window?.windowScene?.screen.bounds.width ?? view.bounds.width
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 260))
+        containerView.backgroundColor = .secondarySystemBackground
+
+        let doneButton = UIButton(type: .system)
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        doneButton.addTarget(self, action: #selector(didTapDoneOnYearPicker), for: .touchUpInside)
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+
+        let separator = UIView()
+        separator.backgroundColor = .separator
+        separator.translatesAutoresizingMaskIntoConstraints = false
+
+        yearPickerView.translatesAutoresizingMaskIntoConstraints = false
+
+        containerView.addSubview(doneButton)
+        containerView.addSubview(separator)
+        containerView.addSubview(yearPickerView)
+
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            doneButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            doneButton.heightAnchor.constraint(equalToConstant: 30),
+
+            separator.topAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 8),
+            separator.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 0.5),
+
+            yearPickerView.topAnchor.constraint(equalTo: separator.bottomAnchor),
+            yearPickerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            yearPickerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            yearPickerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ])
+
+        return containerView
     }
 
     /// Commits the selected year and dismisses the picker.

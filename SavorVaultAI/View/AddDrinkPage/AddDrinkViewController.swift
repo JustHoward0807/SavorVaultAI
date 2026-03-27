@@ -22,9 +22,14 @@ class AddDrinkViewController: UIViewController {
     @IBOutlet weak var tastingNotesInputContainerView: UIView!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var photoCollectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var drinkNameFieldContainer: UIView!
+    @IBOutlet weak var drinkNameTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var selectTypeButton: UIButton!
 
     var selectedDrinkType: String?
+    var selectedWineCategory: WineCategory?
+    var selectedBeerCategory: BeerCategory?
     let yearPickerView = UIPickerView()
     let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
     let ratingFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
@@ -47,6 +52,8 @@ class AddDrinkViewController: UIViewController {
 
         title = selectedDrinkType ?? "Add Drink"
         configureNavigationItems()
+        configureDrinkNameField()
+        configureCategoryMenu()
         configureTasteSliders()
         configureYearPicker()
         configurePersonalRatingSection()
@@ -58,6 +65,57 @@ class AddDrinkViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updatePhotoCollectionLayoutIfNeeded()
+    }
+
+    /// Configures the drink name field container so tapping anywhere activates the text field.
+    func configureDrinkNameField() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(drinkNameContainerTapped))
+        drinkNameFieldContainer.addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func drinkNameContainerTapped() {
+        drinkNameTextField.becomeFirstResponder()
+    }
+
+    /// Configures the category selection menu based on the selected drink type.
+    func configureCategoryMenu() {
+        guard let drinkType = selectedDrinkType?.lowercased() else {
+            selectTypeButton.menu = nil
+            return
+        }
+
+        let categories: [UIAction]
+
+        switch drinkType {
+        case "wine":
+            categories = WineCategory.allCases.map { category in
+                UIAction(title: category.displayName) { [weak self] _ in
+                    guard let self else { return }
+                    self.selectedWineCategory = category
+                    UIView.performWithoutAnimation {
+                        self.selectTypeButton.setTitle(category.displayName, for: .normal)
+                        self.selectTypeButton.layoutIfNeeded()
+                    }
+                }
+            }
+        case "beer":
+            categories = BeerCategory.allCases.map { category in
+                UIAction(title: category.displayName) { [weak self] _ in
+                    guard let self else { return }
+                    self.selectedBeerCategory = category
+                    UIView.performWithoutAnimation {
+                        self.selectTypeButton.setTitle(category.displayName, for: .normal)
+                        self.selectTypeButton.layoutIfNeeded()
+                    }
+                }
+            }
+        default:
+            selectTypeButton.menu = nil
+            return
+        }
+
+        selectTypeButton.menu = UIMenu(title: "", options: .singleSelection, children: categories)
+        selectTypeButton.showsMenuAsPrimaryAction = true
     }
 
     deinit {
