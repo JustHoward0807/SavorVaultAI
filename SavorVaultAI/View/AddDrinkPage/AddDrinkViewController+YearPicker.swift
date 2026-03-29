@@ -7,27 +7,28 @@ import UIKit
 
 extension AddDrinkViewController {
 
-    /// Configures the year picker and default value.
+    /// Configures the year picker triggered by the pencil button.
     func configureYearPicker() {
         yearPickerView.dataSource = self
         yearPickerView.delegate = self
-        yearTextField.inputView = makeYearPickerInputView()
-        yearTextField.clearButtonMode = .never
 
-        yearTextField.borderStyle = .none
-        yearTextField.backgroundColor = .tertiarySystemFill
-        yearTextField.layer.cornerRadius = 10
-        yearTextField.clipsToBounds = true
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        yearTextField.leftView = paddingView
-        yearTextField.leftViewMode = .always
-        yearTextField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        yearTextField.rightViewMode = .always
+        // Hidden text field to host the picker input view
+        yearInputField.inputView = makeYearPickerInputView()
+        view.addSubview(yearInputField)
 
-        if let firstYear = availableYears.first {
-            yearTextField.text = String(firstYear)
-            yearPickerView.selectRow(0, inComponent: 0, animated: false)
+        yearEditButton.addTarget(self, action: #selector(didTapYearEditButton), for: .touchUpInside)
+
+        // Default to the first actual year (index 1, skipping "Unknown")
+        if yearDisplayOptions.count > 1 {
+            yearValueLabel.text = yearDisplayOptions[1]
+            yearValueLabel.textColor = .label
+            yearPickerView.selectRow(1, inComponent: 0, animated: false)
         }
+    }
+
+    /// Opens the year picker when the pencil button is tapped.
+    @objc func didTapYearEditButton() {
+        yearInputField.becomeFirstResponder()
     }
 
     /// Creates a combined input view containing the year picker and a Done button.
@@ -74,8 +75,9 @@ extension AddDrinkViewController {
     /// Commits the selected year and dismisses the picker.
     @objc func didTapDoneOnYearPicker() {
         let selectedRow = yearPickerView.selectedRow(inComponent: 0)
-        yearTextField.text = String(availableYears[selectedRow])
-        yearTextField.resignFirstResponder()
+        yearValueLabel.text = yearDisplayOptions[selectedRow]
+        yearValueLabel.textColor = .label
+        yearInputField.resignFirstResponder()
     }
 }
 
@@ -86,18 +88,19 @@ extension AddDrinkViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         1
     }
 
-    /// Returns the number of available years to display.
+    /// Returns the number of available year options to display.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        availableYears.count
+        yearDisplayOptions.count
     }
 
     /// Provides the display title for a year row.
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        String(availableYears[row])
+        yearDisplayOptions[row]
     }
 
-    /// Updates the text field when a year is selected.
+    /// Updates the year label when a year is selected.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        yearTextField.text = String(availableYears[row])
+        yearValueLabel.text = yearDisplayOptions[row]
+        yearValueLabel.textColor = .label
     }
 }

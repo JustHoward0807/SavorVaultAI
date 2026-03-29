@@ -13,7 +13,8 @@ class AddDrinkViewController: UIViewController {
     @IBOutlet weak var bitternessSlider: UISlider!
     @IBOutlet weak var sweetnessValueLabel: UILabel!
     @IBOutlet weak var bitternessValueLabel: UILabel!
-    @IBOutlet weak var yearTextField: UITextField!
+    @IBOutlet weak var yearValueLabel: UILabel!
+    @IBOutlet weak var yearEditButton: UIButton!
     @IBOutlet weak var personalRatingButtonsStackView: UIStackView!
     @IBOutlet weak var personalRatingValueLabel: UILabel!
     @IBOutlet weak var tastingNotesTextView: UITextView!
@@ -25,12 +26,21 @@ class AddDrinkViewController: UIViewController {
     @IBOutlet weak var drinkNameFieldContainer: UIView!
     @IBOutlet weak var drinkNameTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var selectTypeButton: UIButton!
+    @IBOutlet weak var selectTypeValueLabel: UILabel!
+    @IBOutlet weak var categoryChevronButton: UIButton!
+    @IBOutlet weak var categoryStackView: UIStackView!
+    @IBOutlet weak var dateStackView: UIStackView!
 
     var selectedDrinkType: String?
     var selectedWineCategory: WineCategory?
     var selectedBeerCategory: BeerCategory?
     let yearPickerView = UIPickerView()
+    /// Hidden text field used to host the year picker input view.
+    let yearInputField: UITextField = {
+        let field = UITextField(frame: .zero)
+        field.isHidden = true
+        return field
+    }()
     let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
     let ratingFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     let sweetnessOptions = ["Dry", "Off-Dry", "Unselected", "Semi-Sweet", "Sweet"]
@@ -44,6 +54,10 @@ class AddDrinkViewController: UIViewController {
     lazy var availableYears: [Int] = {
         let currentYear = Calendar.current.component(.year, from: Date())
         return Array(stride(from: currentYear, through: 1900, by: -1))
+    }()
+    /// Year picker display options with "Unknown" as the first entry.
+    lazy var yearDisplayOptions: [String] = {
+        ["Unknown"] + availableYears.map { String($0) }
     }()
 
     /// Configures the add drink screen after the view loads.
@@ -79,10 +93,19 @@ class AddDrinkViewController: UIViewController {
 
     /// Configures the category selection menu based on the selected drink type.
     func configureCategoryMenu() {
-        guard let drinkType = selectedDrinkType?.lowercased() else {
-            selectTypeButton.menu = nil
-            return
-        }
+        // Make chevron icons smaller
+        let smallChevron = UIImage.SymbolConfiguration(pointSize: 10, weight: .medium)
+        categoryChevronButton.setPreferredSymbolConfiguration(smallChevron, forImageIn: .normal)
+        yearEditButton.setPreferredSymbolConfiguration(smallChevron, forImageIn: .normal)
+
+        categoryStackView.isLayoutMarginsRelativeArrangement = true
+        categoryStackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 14, leading: 14, bottom: 14, trailing: 14)
+        dateStackView.isLayoutMarginsRelativeArrangement = true
+        dateStackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 14, leading: 14, bottom: 14, trailing: 14)
+        categoryChevronButton.showsMenuAsPrimaryAction = true
+        categoryChevronButton.changesSelectionAsPrimaryAction = false
+
+        guard let drinkType = selectedDrinkType?.lowercased() else { return }
 
         let categories: [UIAction]
 
@@ -92,10 +115,8 @@ class AddDrinkViewController: UIViewController {
                 UIAction(title: category.displayName) { [weak self] _ in
                     guard let self else { return }
                     self.selectedWineCategory = category
-                    UIView.performWithoutAnimation {
-                        self.selectTypeButton.setTitle(category.displayName, for: .normal)
-                        self.selectTypeButton.layoutIfNeeded()
-                    }
+                    self.selectTypeValueLabel.text = category.displayName
+                    self.selectTypeValueLabel.textColor = .label
                 }
             }
         case "beer":
@@ -103,19 +124,15 @@ class AddDrinkViewController: UIViewController {
                 UIAction(title: category.displayName) { [weak self] _ in
                     guard let self else { return }
                     self.selectedBeerCategory = category
-                    UIView.performWithoutAnimation {
-                        self.selectTypeButton.setTitle(category.displayName, for: .normal)
-                        self.selectTypeButton.layoutIfNeeded()
-                    }
+                    self.selectTypeValueLabel.text = category.displayName
+                    self.selectTypeValueLabel.textColor = .label
                 }
             }
         default:
-            selectTypeButton.menu = nil
             return
         }
 
-        selectTypeButton.menu = UIMenu(title: "", options: .singleSelection, children: categories)
-        selectTypeButton.showsMenuAsPrimaryAction = true
+        categoryChevronButton.menu = UIMenu(title: "", options: .singleSelection, children: categories)
     }
 
     deinit {

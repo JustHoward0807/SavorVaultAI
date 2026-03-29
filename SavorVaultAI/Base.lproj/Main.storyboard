@@ -95,7 +95,7 @@
                                 <rect key="frame" x="0.0" y="124" width="402" height="682"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMM-jH-xGy" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="402" height="1087"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="402" height="1145.3333333333333"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqS-RJ-D7I" userLabel="DrinkNameFieldContainer">
                                                 <rect key="frame" x="16" y="8" width="370" height="76"/>
@@ -246,7 +246,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbg-2T-wbz" userLabel="Photos-ContainerView">
-                                                <rect key="frame" x="16" y="884" width="370" height="179"/>
+                                                <rect key="frame" x="16" y="942.33333333333326" width="370" height="179"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="PHOTOS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-W2-bWk">
                                                         <rect key="frame" x="0.0" y="0.0" width="370" height="14.333333333333334"/>
@@ -255,7 +255,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ccz-y8-njy">
-                                                        <rect key="frame" x="0.0" y="34.333333333333258" width="370" height="144.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="34.333333333333485" width="370" height="144.66666666666666"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="ePc-cS-6bd">
                                                             <size key="itemSize" width="112" height="112"/>
@@ -277,50 +277,90 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cYr-Hw-pSv" userLabel="CategoryAndYear-StackView">
-                                                <rect key="frame" x="16" y="343.33333333333331" width="370" height="30"/>
+                                                <rect key="frame" x="16" y="343.33333333333331" width="370" height="88.333333333333314"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FIi-kg-Uc4" userLabel="CategoryBtn-StackView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="30"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="FIi-kg-Uc4" userLabel="CategoryBtn-StackView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="88.333333333333329"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDz-QC-slA">
-                                                                <rect key="frame" x="0.0" y="0.0" width="73.666666666666671" height="30"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OR-T8-XYc">
-                                                                <rect key="frame" x="96" y="0.0" width="81" height="30"/>
-                                                                <menu key="menu" id="Hho-zf-qzw">
-                                                                    <menuOptions key="menuOptions" singleSelection="YES"/>
-                                                                    <children>
-                                                                        <command title="Item 1" id="kID-1z-c2i"/>
-                                                                        <command title="Item 2" id="23h-qw-iMH"/>
-                                                                    </children>
-                                                                </menu>
-                                                                <state key="normal" title="Select Type"/>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xsC-ef-bPX" userLabel="Date-StackView">
-                                                        <rect key="frame" x="193" y="0.0" width="177" height="30"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9z4-I5-ot9">
-                                                                <rect key="frame" x="0.0" y="5" width="35.333333333333336" height="20.333333333333332"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Year" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-Mb-8zi">
-                                                                <rect key="frame" x="91" y="4" width="86" height="22"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-cat-row" userLabel="CategoryHeader-StackView">
+                                                                <rect key="frame" x="14" y="14" width="149" height="28"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDz-QC-slA">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="73.666666666666671" height="28"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-chv-btn">
+                                                                        <rect key="frame" x="127" y="0.0" width="22" height="28"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="22" id="cat-btn-w"/>
+                                                                        </constraints>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.up.chevron.down" catalog="system" buttonSize="mini">
+                                                                            <color key="baseForegroundColor" systemColor="secondaryLabelColor"/>
+                                                                        </buttonConfiguration>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="val-cat-lbl">
+                                                                <rect key="frame" x="14" y="54.000000000000064" width="149" height="20.333333333333336"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="bday-year"/>
-                                                            </textField>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <directionalEdgeInsets key="directionalLayoutMargins" top="14" leading="14" bottom="14" trailing="14"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xsC-ef-bPX" userLabel="Date-StackView">
+                                                        <rect key="frame" x="193" y="0.0" width="177" height="88.333333333333329"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-yr-row" userLabel="YearHeader-StackView">
+                                                                <rect key="frame" x="14" y="14" width="149" height="28"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9z4-I5-ot9">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="35.333333333333336" height="28"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yr-edit-btn">
+                                                                        <rect key="frame" x="127" y="0.0" width="22" height="28"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="22" id="yr-btn-w"/>
+                                                                        </constraints>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.up.chevron.down" catalog="system" buttonSize="mini">
+                                                                            <color key="baseForegroundColor" systemColor="secondaryLabelColor"/>
+                                                                        </buttonConfiguration>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="val-yr-lbl">
+                                                                <rect key="frame" x="14" y="54.000000000000064" width="149" height="20.333333333333336"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <directionalEdgeInsets key="directionalLayoutMargins" top="14" leading="14" bottom="14" trailing="14"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATG-rM-Tp7" userLabel="PersonalRating-ContainerView">
-                                                <rect key="frame" x="16" y="393.33333333333337" width="370" height="136.33333333333337"/>
+                                                <rect key="frame" x="16" y="451.66666666666657" width="370" height="136.33333333333331"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AII-5o-AKV">
                                                         <rect key="frame" x="16" y="15.999999999999993" width="338" height="104.33333333333331"/>
@@ -332,7 +372,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="y8D-fL-0oG" userLabel="PersonalRatingButtons-StackView">
-                                                                <rect key="frame" x="0.0" y="30.333333333333258" width="338" height="44"/>
+                                                                <rect key="frame" x="0.0" y="30.333333333333371" width="338" height="44"/>
                                                                 <subviews>
                                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmq-XP-XXg">
                                                                         <rect key="frame" x="0.0" y="7" width="58" height="30"/>
@@ -370,7 +410,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 / 5.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUD-0V-8dW">
-                                                                <rect key="frame" x="0.0" y="90.333333333333258" width="338" height="14"/>
+                                                                <rect key="frame" x="0.0" y="90.333333333333371" width="338" height="14"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubheadline"/>
                                                                 <color key="textColor" red="0.95294117647058818" green="0.76470588235294112" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -393,7 +433,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15k-P6-QyN" userLabel="Seperator">
-                                                <rect key="frame" x="16" y="549.66666666666663" width="370" height="1"/>
+                                                <rect key="frame" x="16" y="608" width="370" height="1"/>
                                                 <color key="backgroundColor" systemColor="separatorColor"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Seperator" identifier="Seperator" label="Seperator"/>
                                                 <constraints>
@@ -401,7 +441,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fJ-Qs-P2M" userLabel="TastingNotes-ContainerView">
-                                                <rect key="frame" x="16" y="570.66666666666663" width="370" height="293.33333333333337"/>
+                                                <rect key="frame" x="16" y="629" width="370" height="293.33333333333326"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="TASTING NOTES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz5-HM-OlV">
                                                         <rect key="frame" x="0.0" y="0.0" width="370" height="14.333333333333334"/>
@@ -517,6 +557,9 @@
                     <connections>
                         <outlet property="bitternessSlider" destination="Ulv-wb-Hwi" id="l0e-lu-cYy"/>
                         <outlet property="bitternessValueLabel" destination="aAJ-N5-t89" id="Ykk-eW-SdT"/>
+                        <outlet property="categoryChevronButton" destination="cat-chv-btn" id="cat-chv-out"/>
+                        <outlet property="categoryStackView" destination="FIi-kg-Uc4" id="cat-stk-out"/>
+                        <outlet property="dateStackView" destination="xsC-ef-bPX" id="dat-stk-out"/>
                         <outlet property="drinkNameFieldContainer" destination="GqS-RJ-D7I" id="dNk-oc-con"/>
                         <outlet property="drinkNameTextField" destination="dNk-Tf-iNp" id="dNk-ot-con"/>
                         <outlet property="personalRatingButtonsStackView" destination="y8D-fL-0oG" id="02k-rb-Iiy"/>
@@ -524,14 +567,15 @@
                         <outlet property="photoCollectionHeightConstraint" destination="hY9-pV-gcI" id="xv0-bn-F0U"/>
                         <outlet property="photoCollectionView" destination="ccz-y8-njy" id="2vF-D7-eeK"/>
                         <outlet property="scrollView" destination="rFo-vf-7ct" id="XFp-zX-Qq2"/>
-                        <outlet property="selectTypeButton" destination="2OR-T8-XYc" id="cTy-Bm-9kL"/>
+                        <outlet property="selectTypeValueLabel" destination="val-cat-lbl" id="cTy-Bm-vlb"/>
                         <outlet property="sweetnessSlider" destination="Izz-0u-PJ3" id="I2F-VT-2XL"/>
                         <outlet property="sweetnessValueLabel" destination="JTR-eM-CM6" id="BQh-s1-Y8g"/>
                         <outlet property="tastingNotesCharacterCountLabel" destination="1yR-w0-P7Q" id="qVd-Gk-lcw"/>
                         <outlet property="tastingNotesInputContainerView" destination="rWq-fx-ApR" id="gQd-EW-zTb"/>
                         <outlet property="tastingNotesPlaceholderLabel" destination="H0S-Tb-uLY" id="VCK-JG-5ho"/>
                         <outlet property="tastingNotesTextView" destination="Z3P-4k-uBv" id="uSz-3U-U3d"/>
-                        <outlet property="yearTextField" destination="gnE-Mb-8zi" id="qHx-L5-XTt"/>
+                        <outlet property="yearEditButton" destination="yr-edit-btn" id="yr-edt-out"/>
+                        <outlet property="yearValueLabel" destination="val-yr-lbl" id="yr-val-out"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jjd-4R-0Yg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -547,20 +591,21 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.up.chevron.down" catalog="system" width="109" height="128"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
