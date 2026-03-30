@@ -52,4 +52,25 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.configure(with: recentlyAddedItems[indexPath.item])
         return cell
     }
+
+    // MARK: - UICollectionViewDelegate — Scroll-in Animation
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        // Start off-screen to the right and transparent
+        cell.alpha = 0
+        cell.transform = CGAffineTransform(translationX: 40, y: 0)
+
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0.05 * Double(indexPath.item % 3),
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.5,
+            options: .curveEaseOut
+        ) {
+            cell.alpha = 1
+            cell.transform = .identity
+        }
+    }
 }

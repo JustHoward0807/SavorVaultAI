@@ -32,7 +32,7 @@ extension HomeViewController {
     func updateTabButtonAppearances() {
         tabButtons.enumerated().forEach { index, button in
             var config = button.configuration ?? UIButton.Configuration.plain()
-            config.baseForegroundColor = index == selectedTabIndex ? .label : .secondaryLabel
+            config.baseForegroundColor = index == selectedTabIndex ? .white : .secondaryLabel
             button.configuration = config
         }
     }
@@ -46,11 +46,10 @@ extension HomeViewController {
         }
     }
 
-    /// Recalculates pill size and position. Called from viewDidLayoutSubviews on every layout pass.
+    /// Recalculates pill position. Called from viewDidLayoutSubviews on every layout pass.
     func updatePillLayout() {
         guard tabSelectorView.bounds.width > 0 else { return }
         let pillWidth = (tabSelectorView.bounds.width - 8) / 3
-        selectedPillWidthConstraint.constant = pillWidth
         selectedPillLeadingConstraint.constant = 4 + CGFloat(selectedTabIndex) * pillWidth
     }
 
@@ -74,7 +73,7 @@ extension HomeViewController {
         aiAnalysisCardView.addSubview(tabSelectorView)
 
         // Floating pill that slides under the selected tab
-        selectedPillView.backgroundColor = .systemBackground
+        selectedPillView.backgroundColor = .black
         selectedPillView.layer.cornerRadius = 9
         selectedPillView.layer.cornerCurve = .continuous
         selectedPillView.layer.shadowColor = UIColor.black.cgColor
@@ -84,11 +83,13 @@ extension HomeViewController {
         selectedPillView.translatesAutoresizingMaskIntoConstraints = false
         tabSelectorView.addSubview(selectedPillView)
 
-        // Pill position constraints — constants updated in updatePillLayout()
+        // Pill position constraints — leading is animated, width is 1/3 of selector minus padding
         selectedPillLeadingConstraint = selectedPillView.leadingAnchor.constraint(
             equalTo: tabSelectorView.leadingAnchor, constant: 4
         )
-        selectedPillWidthConstraint = selectedPillView.widthAnchor.constraint(equalToConstant: 50)
+        selectedPillWidthConstraint = selectedPillView.widthAnchor.constraint(
+            equalTo: tabSelectorView.widthAnchor, multiplier: 1.0 / 3.0, constant: -8.0 / 3.0
+        )
 
         NSLayoutConstraint.activate([
             selectedPillLeadingConstraint,
@@ -165,7 +166,7 @@ extension HomeViewController {
             var outgoing = incoming
             outgoing.font = UIFont.systemFont(
                 ofSize: UIFont.preferredFont(forTextStyle: .subheadline).pointSize,
-                weight: .semibold
+                weight: .semibold,
             )
             return outgoing
         }

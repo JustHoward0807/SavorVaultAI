@@ -14,6 +14,11 @@ struct DrinkCardItem {
     let category: String
 }
 
+private class GradientView: UIView {
+    override class var layerClass: AnyClass { CAGradientLayer.self }
+    var gradientLayer: CAGradientLayer { layer as! CAGradientLayer }
+}
+
 final class DrinkCardCell: UICollectionViewCell {
 
     static let reuseIdentifier = "DrinkCardCell"
@@ -21,7 +26,7 @@ final class DrinkCardCell: UICollectionViewCell {
     // MARK: - UI Elements
 
     private let backgroundCardView = UIView()
-    private let gradientLayer = CAGradientLayer()
+    private let gradientView = GradientView()
     private let nameLabel = UILabel()
     private let categoryLabel = UILabel()
 
@@ -41,7 +46,6 @@ final class DrinkCardCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradientLayer.frame = backgroundCardView.bounds
         contentView.layer.shadowPath = UIBezierPath(
             roundedRect: contentView.bounds,
             cornerRadius: 18
@@ -74,9 +78,10 @@ final class DrinkCardCell: UICollectionViewCell {
         contentView.addSubview(backgroundCardView)
 
         // Gradient overlay for text legibility (bottom half, clear → dark)
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.45).cgColor]
-        gradientLayer.locations = [0.5, 1.0]
-        backgroundCardView.layer.addSublayer(gradientLayer)
+        gradientView.gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.45).cgColor]
+        gradientView.gradientLayer.locations = [0.5, 1.0]
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundCardView.addSubview(gradientView)
 
         // Category label (above name, bottom of card)
         categoryLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
@@ -101,6 +106,12 @@ final class DrinkCardCell: UICollectionViewCell {
             backgroundCardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             backgroundCardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             backgroundCardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+            // gradientView fills backgroundCardView
+            gradientView.topAnchor.constraint(equalTo: backgroundCardView.topAnchor),
+            gradientView.leadingAnchor.constraint(equalTo: backgroundCardView.leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: backgroundCardView.trailingAnchor),
+            gradientView.bottomAnchor.constraint(equalTo: backgroundCardView.bottomAnchor),
 
             // nameLabel at bottom-left of card
             nameLabel.leadingAnchor.constraint(equalTo: backgroundCardView.leadingAnchor, constant: 12),
