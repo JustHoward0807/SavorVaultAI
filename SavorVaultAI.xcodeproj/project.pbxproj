@@ -33,11 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9737B8422F708FD0005366CD /* SavorVaultAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavorVaultAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9737B85B2F708FD1005366CD /* SavorVaultAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavorVaultAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9737B8652F708FD1005366CD /* SavorVaultAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavorVaultAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9737B8422F708FD0005366CD /* SavorVaultAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SavorVaultAI.app; path = "/Users/lung-haotung/Documents/GitHub/SavorVaultAI/build/Debug-iphoneos/SavorVaultAI.app"; sourceTree = "<absolute>"; };
+		9737B85B2F708FD1005366CD /* SavorVaultAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SavorVaultAITests.xctest; path = "/Users/lung-haotung/Documents/GitHub/SavorVaultAI/build/Debug-iphoneos/SavorVaultAI.app/PlugIns/SavorVaultAITests.xctest"; sourceTree = "<absolute>"; };
+		9737B8652F708FD1005366CD /* SavorVaultAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SavorVaultAIUITests.xctest; path = "/Users/lung-haotung/Documents/GitHub/SavorVaultAI/build/Debug-iphoneos/SavorVaultAIUITests-Runner.app/PlugIns/SavorVaultAIUITests.xctest"; sourceTree = "<absolute>"; };
 		9737B87D2F709262005366CD /* AGENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AGENTS.md; sourceTree = "<group>"; };
 		9737B8812F709373005366CD /* app_structure.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = app_structure.md; sourceTree = "<group>"; };
+		97FF1BEC2F7B321400DA107F /* SavorVaultAI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SavorVaultAI.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -99,23 +100,13 @@
 		9737B8392F708FD0005366CD = {
 			isa = PBXGroup;
 			children = (
+				97FF1BEC2F7B321400DA107F /* SavorVaultAI.xctestplan */,
 				9737B8812F709373005366CD /* app_structure.md */,
 				9737B87D2F709262005366CD /* AGENTS.md */,
 				9737B8442F708FD0005366CD /* SavorVaultAI */,
 				9737B85E2F708FD1005366CD /* SavorVaultAITests */,
 				9737B8682F708FD1005366CD /* SavorVaultAIUITests */,
-				9737B8432F708FD0005366CD /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		9737B8432F708FD0005366CD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9737B8422F708FD0005366CD /* SavorVaultAI.app */,
-				9737B85B2F708FD1005366CD /* SavorVaultAITests.xctest */,
-				9737B8652F708FD1005366CD /* SavorVaultAIUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,7 +213,7 @@
 			mainGroup = 9737B8392F708FD0005366CD;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 9737B8432F708FD0005366CD /* Products */;
+			productRefGroup = 9737B8392F708FD0005366CD;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (

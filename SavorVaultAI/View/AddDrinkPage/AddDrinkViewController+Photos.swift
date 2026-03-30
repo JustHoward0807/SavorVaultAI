@@ -352,6 +352,15 @@ private final class AddDrinkPhotoAddCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        guard cardView.bounds.width.isFinite,
+              cardView.bounds.height.isFinite,
+              cardView.bounds.width > dashedBorderLayer.lineWidth,
+              cardView.bounds.height > dashedBorderLayer.lineWidth else {
+            dashedBorderLayer.path = nil
+            dashedBorderLayer.frame = .zero
+            return
+        }
+
         let insetBounds = cardView.bounds.insetBy(dx: dashedBorderLayer.lineWidth / 2, dy: dashedBorderLayer.lineWidth / 2)
         dashedBorderLayer.path = UIBezierPath(
             roundedRect: insetBounds,

@@ -5,6 +5,7 @@
 //  Created by Lung-Hao Tung on 3/23/26.
 //
 
+import CoreData
 import UIKit
 
 class AddDrinkViewController: UIViewController {
@@ -64,6 +65,7 @@ class AddDrinkViewController: UIViewController {
     var lastBitternessPreviewIndex = 2
     var personalRating = 0
     var capturedPhotos: [UIImage] = []
+    var viewModel: AddDrinkViewModel?
     lazy var availableYears: [Int] = {
         let currentYear = Calendar.current.component(.year, from: Date())
         return Array(stride(from: currentYear, through: 1900, by: -1))
@@ -72,12 +74,16 @@ class AddDrinkViewController: UIViewController {
     lazy var yearDisplayOptions: [String] = {
         ["Unknown"] + availableYears.map { String($0) }
     }()
+    var onSaveSuccess: (() -> Void)?
+    var persistenceServiceOverride: DrinkPersisting?
+    var documentsDirectoryURLOverride: URL?
 
     /// Configures the add drink screen after the view loads.
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = selectedDrinkType ?? "Add Drink"
+        configureViewModelIfNeeded()
         configureNavigationItems()
         configureDrinkNameField()
         configureCategoryMenu()
@@ -102,6 +108,91 @@ class AddDrinkViewController: UIViewController {
 
     @objc private func drinkNameContainerTapped() {
         drinkNameTextField.becomeFirstResponder()
+    }
+
+    /// Wires the view model with the default persistence service when the screen is loaded from storyboard.
+    func configureViewModelIfNeeded() {
+        if viewModel != nil {
+            return
+        }
+
+        viewModel = AddDrinkViewModel(persistenceService: persistenceServiceOverride ?? makeDefaultPersistenceService())
+    }
+
+    /// Persists the current form content through the view model.
+    func saveDrink() {
+        guard let viewModel else {
+            presentSaveAlert(title: "Save Failed", message: AddDrinkSaveError.persistenceUnavailable.errorDescription ?? "The drink could not be saved.")
+            return
+        }
+
+        do {
+            try viewModel.saveDrink(makeFormInput())
+            if let onSaveSuccess {
+                onSaveSuccess()
+            } else {
+                dismiss(animated: true)
+            }
+        } catch let error as AddDrinkSaveError {
+            let title: String
+
+            switch error {
+            case .drinkNameRequired:
+                title = "Drink Name Required"
+            case .persistenceUnavailable, .saveFailed:
+                title = "Save Failed"
+            }
+
+            presentSaveAlert(title: title, message: error.errorDescription ?? "The drink could not be saved.")
+        } catch {
+            presentSaveAlert(title: "Save Failed", message: "The drink could not be saved. Please try again.")
+        }
+    }
+
+    /// Collects the screen state into the form input expected by the view model.
+    func makeFormInput() -> AddDrinkFormInput {
+        let viewModel = self.viewModel
+
+        return AddDrinkFormInput(
+            drinkName: drinkNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "",
+            drinkType: selectedDrinkType,
+            category: viewModel?.normalizedCategoryValue(
+                selectedWineCategory: selectedWineCategory,
+                selectedBeerCategory: selectedBeerCategory
+            ),
+            sweetnessLevel: Int16(snappedIndex(for: sweetnessSlider)),
+            bitternessLevel: Int16(snappedIndex(for: bitternessSlider)),
+            personalRating: Int16(personalRating),
+            tastingNotes: viewModel?.normalizedTastingNotes(tastingNotesTextView.text),
+            year: viewModel?.normalizedYearValue(yearValueLabel.text) ?? "Unknown",
+            photos: capturedPhotos
+        )
+    }
+
+    /// Presents a simple alert when saving cannot proceed.
+    func presentSaveAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
+    }
+
+    /// Builds the app's default persistence service from the Core Data stack.
+    func makeDefaultPersistenceService() -> DrinkPersisting? {
+        guard let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else {
+            return nil
+        }
+
+        return DrinkPersistenceService(context: context) { [weak self] in
+            if let documentsDirectoryURLOverride = self?.documentsDirectoryURLOverride {
+                return documentsDirectoryURLOverride
+            }
+
+            guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                throw AddDrinkSaveError.persistenceUnavailable
+            }
+
+            return documentsURL
+        }
     }
 
     /// Configures the category selection menu based on the selected drink type.

@@ -24,6 +24,6 @@ extension AddDrinkViewController {
 
     /// Dismisses the add drink screen.
     @objc func didTapSave() {
-        dismiss(animated: true)
+        saveDrink()
     }
 }
