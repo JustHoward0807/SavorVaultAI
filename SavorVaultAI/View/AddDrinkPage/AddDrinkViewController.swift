@@ -14,7 +14,7 @@ class AddDrinkViewController: UIViewController {
     @IBOutlet weak var sweetnessValueLabel: UILabel!
     @IBOutlet weak var bitternessValueLabel: UILabel!
     @IBOutlet weak var yearValueLabel: UILabel!
-    @IBOutlet weak var yearEditButton: UIButton!
+    @IBOutlet weak var yearChevronImageView: UIImageView!
     @IBOutlet weak var personalRatingButtonsStackView: UIStackView!
     @IBOutlet weak var personalRatingValueLabel: UILabel!
     @IBOutlet weak var tastingNotesTextView: UITextView!
@@ -27,9 +27,22 @@ class AddDrinkViewController: UIViewController {
     @IBOutlet weak var drinkNameTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectTypeValueLabel: UILabel!
-    @IBOutlet weak var categoryChevronButton: UIButton!
+    @IBOutlet weak var categoryChevronImageView: UIImageView!
     @IBOutlet weak var categoryStackView: UIStackView!
     @IBOutlet weak var dateStackView: UIStackView!
+
+    /// Hidden button overlaid on the category chevron for menu presentation.
+    let categoryMenuButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    /// Hidden button overlaid on the year chevron for picker activation.
+    let yearMenuButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     var selectedDrinkType: String?
     var selectedWineCategory: WineCategory?
@@ -94,16 +107,29 @@ class AddDrinkViewController: UIViewController {
     /// Configures the category selection menu based on the selected drink type.
     func configureCategoryMenu() {
         // Make chevron icons smaller
-        let smallChevron = UIImage.SymbolConfiguration(pointSize: 10, weight: .medium)
-        categoryChevronButton.setPreferredSymbolConfiguration(smallChevron, forImageIn: .normal)
-        yearEditButton.setPreferredSymbolConfiguration(smallChevron, forImageIn: .normal)
+        let smallChevron = UIImage.SymbolConfiguration(pointSize: 8, weight: .medium)
+        categoryChevronImageView.preferredSymbolConfiguration = smallChevron
+        yearChevronImageView.preferredSymbolConfiguration = smallChevron
 
         categoryStackView.isLayoutMarginsRelativeArrangement = true
         categoryStackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 14, leading: 14, bottom: 14, trailing: 14)
         dateStackView.isLayoutMarginsRelativeArrangement = true
         dateStackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 14, leading: 14, bottom: 14, trailing: 14)
-        categoryChevronButton.showsMenuAsPrimaryAction = true
-        categoryChevronButton.changesSelectionAsPrimaryAction = false
+
+        // Place hidden menu button over the category chevron image view
+        categoryChevronImageView.isUserInteractionEnabled = true
+        categoryChevronImageView.addSubview(categoryMenuButton)
+        NSLayoutConstraint.activate([
+            categoryMenuButton.topAnchor.constraint(equalTo: categoryChevronImageView.topAnchor),
+            categoryMenuButton.bottomAnchor.constraint(equalTo: categoryChevronImageView.bottomAnchor),
+            categoryMenuButton.leadingAnchor.constraint(equalTo: categoryChevronImageView.leadingAnchor),
+            categoryMenuButton.trailingAnchor.constraint(equalTo: categoryChevronImageView.trailingAnchor),
+        ])
+        categoryMenuButton.showsMenuAsPrimaryAction = true
+        categoryMenuButton.changesSelectionAsPrimaryAction = false
+
+        // Forward taps anywhere on the category card to the hidden menu button
+        (categoryStackView as? TappableStackView)?.forwardingTarget = categoryMenuButton
 
         guard let drinkType = selectedDrinkType?.lowercased() else { return }
 
@@ -132,7 +158,7 @@ class AddDrinkViewController: UIViewController {
             return
         }
 
-        categoryChevronButton.menu = UIMenu(title: "", options: .singleSelection, children: categories)
+        categoryMenuButton.menu = UIMenu(title: "", options: .singleSelection, children: categories)
     }
 
     deinit {

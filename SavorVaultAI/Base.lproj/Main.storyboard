@@ -279,7 +279,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cYr-Hw-pSv" userLabel="CategoryAndYear-StackView">
                                                 <rect key="frame" x="16" y="343.33333333333331" width="370" height="88.333333333333314"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="FIi-kg-Uc4" userLabel="CategoryBtn-StackView">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="FIi-kg-Uc4" userLabel="CategoryBtn-StackView" customClass="TappableStackView" customModule="SavorVaultAI" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="88.333333333333329"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-cat-row" userLabel="CategoryHeader-StackView">
@@ -291,15 +291,13 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-chv-btn">
-                                                                        <rect key="frame" x="127" y="0.0" width="22" height="28"/>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cat-chv-img">
+                                                                        <rect key="frame" x="135" y="4" width="14" height="20"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="22" id="cat-btn-w"/>
+                                                                            <constraint firstAttribute="width" constant="14" id="cat-btn-w"/>
                                                                         </constraints>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.up.chevron.down" catalog="system" buttonSize="mini">
-                                                                            <color key="baseForegroundColor" systemColor="secondaryLabelColor"/>
-                                                                        </buttonConfiguration>
-                                                                    </button>
+                                                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                                    </imageView>
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="val-cat-lbl">
@@ -318,7 +316,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xsC-ef-bPX" userLabel="Date-StackView">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xsC-ef-bPX" userLabel="Date-StackView" customClass="TappableStackView" customModule="SavorVaultAI" customModuleProvider="target">
                                                         <rect key="frame" x="193" y="0.0" width="177" height="88.333333333333329"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-yr-row" userLabel="YearHeader-StackView">
@@ -330,15 +328,13 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yr-edit-btn">
-                                                                        <rect key="frame" x="127" y="0.0" width="22" height="28"/>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yr-chv-img">
+                                                                        <rect key="frame" x="135" y="4" width="14" height="20"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="22" id="yr-btn-w"/>
+                                                                            <constraint firstAttribute="width" constant="14" id="yr-btn-w"/>
                                                                         </constraints>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.up.chevron.down" catalog="system" buttonSize="mini">
-                                                                            <color key="baseForegroundColor" systemColor="secondaryLabelColor"/>
-                                                                        </buttonConfiguration>
-                                                                    </button>
+                                                                        <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                                    </imageView>
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="val-yr-lbl">
@@ -557,7 +553,7 @@
                     <connections>
                         <outlet property="bitternessSlider" destination="Ulv-wb-Hwi" id="l0e-lu-cYy"/>
                         <outlet property="bitternessValueLabel" destination="aAJ-N5-t89" id="Ykk-eW-SdT"/>
-                        <outlet property="categoryChevronButton" destination="cat-chv-btn" id="cat-chv-out"/>
+                        <outlet property="categoryChevronImageView" destination="cat-chv-img" id="cat-chv-out"/>
                         <outlet property="categoryStackView" destination="FIi-kg-Uc4" id="cat-stk-out"/>
                         <outlet property="dateStackView" destination="xsC-ef-bPX" id="dat-stk-out"/>
                         <outlet property="drinkNameFieldContainer" destination="GqS-RJ-D7I" id="dNk-oc-con"/>
@@ -574,7 +570,7 @@
                         <outlet property="tastingNotesInputContainerView" destination="rWq-fx-ApR" id="gQd-EW-zTb"/>
                         <outlet property="tastingNotesPlaceholderLabel" destination="H0S-Tb-uLY" id="VCK-JG-5ho"/>
                         <outlet property="tastingNotesTextView" destination="Z3P-4k-uBv" id="uSz-3U-U3d"/>
-                        <outlet property="yearEditButton" destination="yr-edit-btn" id="yr-edt-out"/>
+                        <outlet property="yearChevronImageView" destination="yr-chv-img" id="yr-chv-out"/>
                         <outlet property="yearValueLabel" destination="val-yr-lbl" id="yr-val-out"/>
                     </connections>
                 </viewController>

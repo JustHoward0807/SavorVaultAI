@@ -7,7 +7,7 @@ import UIKit
 
 extension AddDrinkViewController {
 
-    /// Configures the year picker triggered by the pencil button.
+    /// Configures the year picker triggered by tapping the date card.
     func configureYearPicker() {
         yearPickerView.dataSource = self
         yearPickerView.delegate = self
@@ -16,14 +16,24 @@ extension AddDrinkViewController {
         yearInputField.inputView = makeYearPickerInputView()
         view.addSubview(yearInputField)
 
-        yearEditButton.addTarget(self, action: #selector(didTapYearEditButton), for: .touchUpInside)
+        // Place hidden button over the year chevron image view
+        yearChevronImageView.isUserInteractionEnabled = true
+        yearChevronImageView.addSubview(yearMenuButton)
+        NSLayoutConstraint.activate([
+            yearMenuButton.topAnchor.constraint(equalTo: yearChevronImageView.topAnchor),
+            yearMenuButton.bottomAnchor.constraint(equalTo: yearChevronImageView.bottomAnchor),
+            yearMenuButton.leadingAnchor.constraint(equalTo: yearChevronImageView.leadingAnchor),
+            yearMenuButton.trailingAnchor.constraint(equalTo: yearChevronImageView.trailingAnchor),
+        ])
+        yearMenuButton.addTarget(self, action: #selector(didTapYearEditButton), for: .touchUpInside)
 
-        // Default to the first actual year (index 1, skipping "Unknown")
-        if yearDisplayOptions.count > 1 {
-            yearValueLabel.text = yearDisplayOptions[1]
-            yearValueLabel.textColor = .label
-            yearPickerView.selectRow(1, inComponent: 0, animated: false)
-        }
+        // Forward taps anywhere on the date card to the hidden year button
+        (dateStackView as? TappableStackView)?.forwardingTarget = yearMenuButton
+
+        // Default to "Select Year" placeholder; picker starts on "Unknown"
+        yearValueLabel.text = "Select Year"
+        yearValueLabel.textColor = .secondaryLabel
+        yearPickerView.selectRow(0, inComponent: 0, animated: false)
     }
 
     /// Opens the year picker when the pencil button is tapped.
